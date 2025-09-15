@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolling Dice</title>
+    <style>
+        body {
+        text-align: center;
+        font-family: Helvetica, sans-serif;
+        }
+        #dice {
+        font-size: 400px;
+        }
+        #dice:hover {
+        cursor: pointer;
+        }
+    </style>
+        
+</head>
+<body>
+    <div>Click on the dice...</div>
+	<div id="dice" onclick="stopstart()"> </div>
+
+    <script>
+        var dice;
+        
+        // dice image from value 1 to 6 are given in an array, codes are from Die face Emoji Emojipedia
+        var dices = ['&#9856;', '&#9857;', '&#9858;', '&#9859;', '&#9860;', '&#9861;' ];
+        var stopped = true;
+        var t;
+
+        // for keep on changing the dice emojis
+        function change() {
+        var random = Math.floor(Math.random()*6);// math.random() gives value from 0 to 1 0.95*6=5.7 floor=5
+        dice.innerHTML = dices[random]; // display 5 no faces of dice
+        }
+        
+        function begin() {
+            stopped=false;
+            t=setInterval(change,100);
+
+        }
+        // invoking function
+        window.onload = function() {
+        dice = document.getElementById("dice");
+        // stopstart(); 
+        begin();
+        }
+
+        function stopstart() {
+     
+        if(stopped){
+            stopped = false;
+            t = setInterval(change, 100);
+        }
+        else{
+            stopped = true;
+            clearInterval(t);
+        }
+
+        }
+
+       
+    </script>
+</body>
+
+</html>
