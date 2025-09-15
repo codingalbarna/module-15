@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shpping List</title>
+</head>
+<body>
+    <h2>Add your To Shopping List here</h2>
+    <form id="myForm">
+		<input id="myInput" type="text">
+		<button> click Here </button>
+	</form>
+
+	<h3>To Do List</h3>
+	<ul id="myItem"></ul>
+
+    <script>
+        let myForm = document.getElementById("myForm");
+        let myInput = document.getElementById("myInput");
+        let myItem = document.getElementById("myItem");
+        myForm.addEventListener("submit", 
+        function(event){
+            event.preventDefault()
+            createItem(myInput.value)
+        })
+
+        function createItem(inputItems){
+
+            if(inputItems === ""){
+                alert("You must write something!")
+                return
+            }
+            else if(inputItems.length > 30){
+                alert("You can add up to 30 characters only!")
+                return
+            }
+            else{
+                var items = `<li>${inputItems}
+                <button onclick="deleteElement(this)">Delete</button> </li>`
+                myItem.insertAdjacentHTML("beforeend", items)
+                myInput.value = ""
+                myInput.focus()
+            }
+
+            
+        }
+
+        function deleteElement(ElementToDelete){
+            ElementToDelete.parentElement.remove()
+        }
+
+    </script>
+</body>
+
+</html>
